@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Hello {{ user.name }}!</h1>
+
+    {% if user.roles %}
+      <ul>
+        {% for r in user.roles %}
+          <li>{{ r }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No roles assigned.</p>
+    {% endif %}
+  </body>
+</html>
