@@ -1,0 +1,10 @@
+[project]
+name = "jinja2tuto"
+version = "0.1.0"
+description = "In this project, we will learn how to use jinja2 template to generate reports"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jinja2>=3.1.6",
+    "notebook>=7.5.0",
+]
