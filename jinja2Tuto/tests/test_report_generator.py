@@ -36,13 +36,25 @@ def report_params():
     return report_data
 
 
-def test_display_generated_source(report_generator, report_params):
+def test_display_generated_source_with_valid_template_name(report_generator, report_params):
     temp_name = "budget_report.html"
-
     report_generator.display_generated_source(temp_name, report_params)
 
 
-def test_persist_generated_source(report_generator, report_params):
+def test_display_generated_source_with_bad_template_name(report_generator, report_params):
+    temp_name = "toto"
+    report_generator.display_generated_source(temp_name, report_params)
+
+
+def test_persist_generated_source_with_valid_template_name(report_generator, report_params):
     temp_name = "budget_report.html"
-    report_generator.persist_generated_source(temp_name, report_params,
-                                              "C:/Users/pliu/Documents/git/Jinja2Tuto/data/tmp/out/test_report.html")
+    resu = report_generator.persist_generated_source(temp_name, report_params,
+                                                     "C:/Users/pliu/Documents/git/Jinja2Tuto/data/tmp/out/test_report.html")
+    assert resu == True
+
+
+def test_persist_generated_source_with_wrong_template_name(report_generator, report_params):
+    temp_name = "toto"
+    resu = report_generator.persist_generated_source(temp_name, report_params,
+                                                     "C:/Users/pliu/Documents/git/Jinja2Tuto/data/tmp/out/test_report.html")
+    assert resu == False
