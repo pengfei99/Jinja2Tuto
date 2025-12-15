@@ -1,7 +1,7 @@
 import pytest
 
 from jinja2Tuto.src.report_generator import ReportGenerator
-from pathlib import Path, PurePath
+from pathlib import Path
 
 
 @pytest.fixture
@@ -19,7 +19,7 @@ def report_params():
         },
         "report": {
             "period": "2026",
-            "author": "Dalia",
+            "author": "Thalia",
             "date": "2025-12-15",
             "summary": "This report provides an estimated budget for planned activities."
         },
