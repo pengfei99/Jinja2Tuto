@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Budget Estimation Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 32px;
+            color: #222;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f6f8;
+        }
+
+        .summary {
+            background-color: #eef5ff;
+            padding: 20px;
+            margin: 0 auto 32px auto; /* center horizontally */
+            max-width: 600px; /* control width */
+            border-radius: 8px;
+            text-align: left; /* keep text readable */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Budget Estimation Report</h1>
+
+<div class="summary">
+    <p><strong>Organization:</strong> {{ organization.name }}</p>
+    <p><strong>Department:</strong> {{ organization.department }}</p>
+    <p><strong>Period:</strong> {{ report.period }}</p>
+    <p><strong>Prepared by:</strong> {{ report.author }}</p>
+    <p><strong>Date:</strong> {{ report.date }}</p>
+</div>
+
+<h2>Executive Summary</h2>
+<p>
+    {{ report.summary }}
+</p>
+
+<h2>Budget Breakdown</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Description</th>
+        <th class="right">Estimated Cost (€)</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in budget.rows %}
+    <tr>
+        <td>{{ item.category }}</td>
+        <td>{{ item.description }}</td>
+        <td class="right">{{ "%.2f"|format(item.amount) }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <th colspan="2" class="right">Total Estimated Budget</th>
+        <th class="right">{{ "%.2f"|format(budget.total) }}</th>
+    </tr>
+    </tfoot>
+</table>
+
+<h2>Assumptions</h2>
+<ul>
+    {% for assumption in report.assumptions %}
+    <li>{{ assumption }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Risks & Notes</h2>
+<ul>
+    {% for risk in report.risks %}
+    <li>{{ risk }}</li>
+    {% endfor %}
+</ul>
+
+<div class="footer">
+    <p>Confidential – Internal Use Only</p>
+</div>
+
+</body>
+</html>
